@@ -18,7 +18,10 @@ module.exports = function (bundler) {
       }
     }
 
-    renameReferences(bundle.name, hashMap);
+    let type = bundle.entryAsset.type
+    if(type != 'woff' && type != 'woff2') {
+      renameReferences(bundle.name, hashMap);
+    }
 
     let oldHash = Path.basename(bundle.name, Path.extname(bundle.name));
     let hash = md5File.sync(bundle.name);
