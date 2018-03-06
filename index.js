@@ -47,5 +47,7 @@ const walkBundles = (bundle, indent) => {
 }
 
 module.exports = bundler => {
-  bundler.on('bundled', bundle => packageHasher(bundle));
+  if (!bundler.options.watch) {
+    bundler.on('bundled', bundle => packageHasher(bundle));
+  }
 }
